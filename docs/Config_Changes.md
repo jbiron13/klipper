@@ -6,6 +6,32 @@ All dates in this document are approximate.
 
 # Changes
 
+20210201: The `TEST_RESONANCES` command will now disable input shaping
+if it was previously enabled (and re-enable it after the test). In order
+to override this behavior and keep the input shaping enabled, one can
+pass an additional parameter `INPUT_SHAPING=1` to the command.
+
+20210201: The `ACCELEROMETER_MEASURE` command will now append the name
+of the accelerometer chip to the output file name if the chip was given
+a name in the corresponding adxl345 section of the printer.cfg.
+
+20201222: The `step_distance` setting in the stepper config sections
+is deprecated.  It is advised to update the config to use the
+[`rotation_distance`](Rotation_Distance.md) setting.  Support for
+`step_distance` will be removed in the near future.
+
+20201218: The `endstop_phase` setting in the endstop_phase module has
+been replaced with `trigger_phase`. If using the endstop phases module
+then it will be necessary to convert to
+[`rotation_distance`](Rotation_Distance.md) and recalibrate any
+endstop phases by running the ENDSTOP_PHASE_CALIBRATE command.
+
+20201218: Rotary delta and polar printers must now specify a
+`gear_ratio` for their rotary steppers, and they may no longer specify
+a `step_distance` parameter.  See the
+[config reference](Config_Reference.md#stepper) for the format of the
+new gear_ratio paramter.
+
 20201213: It is not valid to specify a Z "position_endstop" when using
 "probe:z_virtual_endstop".  An error will now be raised if a Z
 "position_endstop" is specified with "probe:z_virtual_endstop".
